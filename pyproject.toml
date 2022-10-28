@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lodepy"
+version = "0.0.1"
+authors = [
+  { name="Tyler Katchen", email="tkatchen7@gmail.com" },
+]
+description = "Fully python multi-node automation project"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
