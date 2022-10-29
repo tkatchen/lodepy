@@ -6,7 +6,7 @@ K = TypeVar('K')
 
 class NodeReturn(Node):
     def __init__(self, node: Node, value: K):
-        super(node)
+        super().__init__(node)
         self.value = value
 
     def __str__(self) -> K:

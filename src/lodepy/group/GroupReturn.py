@@ -6,8 +6,8 @@ from lodepy.nodes.NodeReturn import NodeReturn
 K = TypeVar('K')
 
 class GroupReturn(Group):
-    def __init__(self, values: List[NodeReturn[K]]) -> None:
-        super([value. for value in values])
+    def __init__(self, values: List['NodeReturn[K]']) -> None:
+        super().__init__(set([value for value in values]))
         self.values = values
 
         self.idx = 0
@@ -16,7 +16,7 @@ class GroupReturn(Group):
         self.idx = 0
         return self
 
-    def __next__(self) -> NodeReturn[K]:
+    def __next__(self) -> 'NodeReturn[K]':
         if self.idx < len(self.values):
             res = self.values[self.idx]
             self.idx += 1
