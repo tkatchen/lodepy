@@ -1,5 +1,6 @@
 import json
-from typing import List, Union
+from typing import Dict, List, Union
+from lodepy.group.Group import Group
 from lodepy.handling.LodepyError import LodepyDataSaveError
 
 from lodepy.handling.LogManager import LogManager
@@ -21,7 +22,7 @@ class DataStore():
         data, nodes, groups = self._loadData()
         self.data = {} if data is None else data
         self.nodes = {} if nodes is None else nodes
-        self.groups = {} if groups is None else groups
+        self.groups : Dict[str, Group]= {} if groups is None else groups
 
     def _loadData(self):
         if self.data_dir[-1] == '/':
@@ -55,9 +56,12 @@ class DataStore():
         except:
             raise LodepyDataSaveError(f'{self.data_dir}/{self.file_name}')
 
-    def addHost(self, node: Node, group: Union[str, List[str]]):
+    def add_host(self, node: Node, group: Union[str, List[str]]):
         if type(group) == type([]):
             for g in group:
-                self.groups[g][node.name] = node.ssh        
+                if g in self.groups:
+                    self.groups[g].add_node() = node.ssh
+                else:
+                    self.groups[g]
         else:
             self.groups[group][node.name] = node.ssh

@@ -4,4 +4,4 @@ from . import group
 from . import handling
 from . import nodes
 
-from .core import lodepy, data_store, init
+from .core.lodepy import lodepy, data_store, init

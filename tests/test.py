@@ -1,1 +1,3 @@
-import lodepy as lodepy
+import lodepy
+
+lodepy.data_store()
