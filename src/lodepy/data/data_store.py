@@ -1,10 +1,10 @@
 import json
-from typing import Dict, List, Union
-from lodepy.group.Group import Group
-from lodepy.handling.LodepyError import LodepyDataSaveError
+from typing import Dict, List, Tuple, Union
+from lodepy.group.group import Group
+from lodepy.handling.lodepy_error import LodepyDataSaveError
 
-from lodepy.handling.LogManager import LogManager
-from lodepy.nodes.Node import Node
+from lodepy.handling.log_manager import LogManager
+from lodepy.nodes.node import Node
 
 class DataStore():
     '''
@@ -19,12 +19,21 @@ class DataStore():
     def __init__(self, data_dir: str, file_name='.') -> None:
         self.data_dir = data_dir
         self.file_name = file_name
-        data, nodes, groups = self._loadData()
+        data, nodes, groups = self._load_data()
         self.data : Dict[str, any]= {} if data is None else data
         self.nodes : Dict[str, Node] = {} if nodes is None else nodes
         self.groups : Dict[str, Group]= {} if groups is None else groups
 
-    def _loadData(self):
+    def _load_data(self) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
+        '''
+        load the stored data from a saved state
+
+        Returns:
+            (Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]): Tuple of all the saved data
+                Index 0: The saved data/variables
+                Index 1: The saved nodes
+                Index 2: The saved groups
+        '''
         if self.data_dir[-1] == '/':
             self.data_dir = self.data_dir[:-1]
 
@@ -33,12 +42,17 @@ class DataStore():
                 json_data = json.load(file)
                 return self._deserialize(json_data)
         except OSError:
-            LogManager.addLog(
+            LogManager.add_log(
                 f"Unable to locate saved data store at {self.data_dir}/{self.file_name}. Made new."
             )
-            return {}
+            return ({}, {}, {})
 
-    def _deserialize(self, serialized_data):
+    def _deserialize(
+            self, serialized_data: Dict[str, any]
+        ) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
+        '''
+        Deserializes the data from the JSON file
+        '''
         data = serialized_data['data']
         nodes = {}
         for node in serialized_data['nodes']:
@@ -54,6 +68,9 @@ class DataStore():
         return data, nodes, groups
 
     def _serialize(self):
+        '''
+        Serialize the data from the data store to put into a JSON file
+        '''
         nodes = [(node.name, node.ssh) for node in self.nodes.values()]
         groups = {}
         for group in self.groups.values():
@@ -64,7 +81,10 @@ class DataStore():
             'groups' : groups
         }
 
-    def writeData(self):
+    def write_data(self):
+        '''
+        Write the data to a JSON file
+        '''
         json_string = self._serialize()
         try:
             with open(f'{self.data_dir}/{self.file_name}', 'w', encoding='utf-8') as file:
@@ -73,20 +93,26 @@ class DataStore():
             raise LodepyDataSaveError(f'{self.data_dir}/{self.file_name}') from exc
 
     def add_node(self, node: Node, group: Union[str, List[str]]):
-        if type(group) == type([]):
-            for g in group:
-                if g in self.groups:
-                    self.groups[g].add_node(node)
+        '''
+        Add a node to (a) group(s)
+        '''
+        if isinstance(group, list):
+            for cur in group:
+                if cur in self.groups:
+                    self.groups[cur].add_node(node)
                 else:
-                    self.groups[g] = Group(g, set([node]))
+                    self.groups[cur] = Group(cur, set([node]))
         else:
             if group in self.groups:
                 self.groups[group].add_node(node)
             else:
-                self.groups[group] = Group(g, set([node]))
+                self.groups[group] = Group(group, set([node]))
 
     def add_group(self, group: str, node: Union[Node, List[Node]]):
-        if type(node) == type([]):
+        '''
+        Add a group with node(s)
+        '''
+        if isinstance(node, list):
             self.groups[group] = Group(group, set(node))
         else:
             self.groups[group] = Group(group, set([node]))

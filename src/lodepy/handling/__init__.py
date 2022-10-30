@@ -1,3 +1,3 @@
 'handling module imports'
-from lodepy.handling.LodepyError import *
-from lodepy.handling.LogManager import LogManager
+from lodepy.handling.lodepy_error import *
+from lodepy.handling.log_manager import LogManager

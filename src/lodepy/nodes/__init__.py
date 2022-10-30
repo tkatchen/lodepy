@@ -1,4 +1,4 @@
 'node module imports'
-from lodepy.core.nodes.Node import Node
-from lodepy.core.nodes.NodeReturn import NodeReturn
-from lodepy.core.nodes.NodeExecutor import NodeExecutor
+from lodepy.nodes.node import Node
+from lodepy.nodes.node_return import NodeReturn
+from lodepy.nodes.node_executor import NodeExecutor

@@ -1,6 +1,6 @@
 from typing import List, overload
 
-from lodepy.data.NodeVariables import NodeVariables
+from lodepy.data.node_variables import NodeVariables
 import lodepy
 
 

@@ -1,3 +1,3 @@
 'group module imports'
-from lodepy.group.Group import Group
-from lodepy.group.GroupReturn import GroupReturn
+from lodepy.group.group import Group
+from lodepy.group.group_return import GroupReturn

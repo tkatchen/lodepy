@@ -1,13 +1,16 @@
 from typing import Callable, List, TypeVar
 
-from lodepy.group.Group import Group
-from lodepy.nodes.NodeReturn import NodeReturn
+from lodepy.group.group import Group
+from lodepy.nodes.node_return import NodeReturn #pylint: disable=unused-import
 
 K = TypeVar('K')
 
 class GroupReturn(Group):
+    '''
+    The group return from executing a certain Task
+    '''
     def __init__(self, values: List['NodeReturn[K]']) -> None:
-        super().__init__(set(values))
+        super().__init__('group_return', set(values))
         self.values = values
 
         self.idx = 0

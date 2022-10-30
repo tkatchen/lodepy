@@ -1,10 +1,13 @@
 from typing import TypeVar
 
-from lodepy.nodes.Node import Node
+from lodepy.nodes.node import Node
 
 K = TypeVar('K')
 
 class NodeReturn(Node):
+    '''
+    The return of a task executed on a certain node.
+    '''
     def __init__(self, node: Node, value: K):
         super().__init__(node)
         self.value = value
