@@ -14,11 +14,13 @@ class Node():
         self.ssh = ssh
         self.information = NodeVariables()
 
-        lodepy.data_store().add_host(self, groups) 
+        lodepy.data_store().add_node(self, groups)
 
     @overload
     def __init__(self, copy: "Node"):
         self.name = copy.name
         self.ssh = copy.ssh
-        self.groups = copy.groups
         self.information = copy.information
+
+    def __hash__(self) -> int:
+        return self.ssh.__hash__() + self.name.__hash__()

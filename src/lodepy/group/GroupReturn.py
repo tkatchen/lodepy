@@ -7,7 +7,7 @@ K = TypeVar('K')
 
 class GroupReturn(Group):
     def __init__(self, values: List['NodeReturn[K]']) -> None:
-        super().__init__(set([value for value in values]))
+        super().__init__(set(values))
         self.values = values
 
         self.idx = 0
