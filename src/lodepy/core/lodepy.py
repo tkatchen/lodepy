@@ -13,7 +13,7 @@ class lodepy(): # pylint: disable=invalid-name
         '''
         cls.data_store = DataStore(data_dir, file_name)
 
-def init(data_dir, file_name):
+def init(data_dir: str, file_name: str) -> None:
     '''
     Initialize the lodepy instance
 
@@ -23,7 +23,7 @@ def init(data_dir, file_name):
     '''
     lodepy.init(data_dir, file_name)
 
-def data_store():
+def data_store() -> DataStore:
     '''
     Access the lodepy data store
 

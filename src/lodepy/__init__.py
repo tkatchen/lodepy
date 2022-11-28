@@ -1,6 +1,6 @@
 from . import core
 from . import data
-from . import group
+from . import groups
 from . import handling
 from . import nodes
 

@@ -23,3 +23,10 @@ class LodepyDataSaveError(LodepyError):
     '''
     def __init__(self, file_path: str):
         super().__init__(f'lodepy failed to save data to {file_path}')
+
+class LodepyInvalidComparison(LodepyError):
+    '''
+    Errow thrown when trying to compare using an unknown comparator
+    '''
+    def __init__(self, comparator: str):
+        super().__init__(f'lodepy failed to compare using the comparator {comparator}')

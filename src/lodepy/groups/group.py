@@ -1,4 +1,4 @@
-from typing import Set
+from typing import Callable, Set
 from lodepy.nodes.node import Node
 
 class Group():

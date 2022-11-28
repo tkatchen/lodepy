@@ -1,6 +1,6 @@
 import json
 from typing import Dict, List, Tuple, Union
-from lodepy.group.group import Group
+from lodepy.groups.group import Group
 from lodepy.handling.lodepy_error import LodepyDataSaveError
 
 from lodepy.handling.log_manager import LogManager
@@ -20,7 +20,7 @@ class DataStore():
         self.data_dir = data_dir
         self.file_name = file_name
         data, nodes, groups = self._load_data()
-        self.data : Dict[str, any]= {} if data is None else data
+        self.data : Dict[str, any] = {} if data is None else data
         self.nodes : Dict[str, Node] = {} if nodes is None else nodes
         self.groups : Dict[str, Group]= {} if groups is None else groups
 
