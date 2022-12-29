@@ -1,5 +1,5 @@
 import json
-from typing import Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 from lodepy.groups.group import Group
 from lodepy.handling.lodepy_error import LodepyDataSaveError
 
@@ -23,6 +23,28 @@ class DataStore():
         self.data : Dict[str, any] = {} if data is None else data
         self.nodes : Dict[str, Node] = {} if nodes is None else nodes
         self.groups : Dict[str, Group]= {} if groups is None else groups
+
+    def __getattribute__(self, __name: str) -> Any:
+        return self.data[__name]
+
+    def __setattr__(self, __name: str, __value: Any) -> None:
+        self.data[__name] = __value
+
+    def __delattr__(self, __name: str) -> None:
+        del self.data[__name]
+
+    def __getitem__(self, __name: str) -> Any:
+        return self.data[__name]
+
+    def __setitem__(self, __name: str, __value: Any) -> None:
+        self.data[__name] = __value
+
+    def __delitem__(self, __name: str) -> None:
+        del self.data[__name]
+
+    def __missing__(self, __name: str) -> None:
+        LogManager.add_log(f'Tried accessing {__name} from data store while the key does not exist')
+        return None
 
     def _load_data(self) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
         '''
