@@ -159,19 +159,21 @@ class GroupReturn(Group):
         '''
         Filter the group return using a comparator with another group return.
         '''
-        res = []
+        res = {}
 
         for node_key in self.values.keys():
             if comparator(self.values[node_key].value, to_comp.values[node_key].value):
-                res.append(node_key)
+                res[node_key] = self.values[node_key]
+
+        return GroupReturn(res)
 
     def filter(self, comparator: Callable[[K],bool]):
         '''
         Filter the group return using a comparator
         '''
-        res = []
+        res = {}
         for node_ret in self.values.values():
             if comparator(node_ret.value):
-                res.append(node_ret)
+                res[node_ret.name] = node_ret
 
         return GroupReturn(res)
