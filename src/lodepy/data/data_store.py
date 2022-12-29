@@ -46,6 +46,9 @@ class DataStore():
         LogManager.add_log(f'Tried accessing {__name} from data store while the key does not exist')
         return None
 
+    def __contains__(self, __name):
+        return __name in self.data
+
     def _load_data(self) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
         '''
         load the stored data from a saved state
