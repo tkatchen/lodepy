@@ -1,4 +1,4 @@
-from typing import Callable, Dict, TypeVar, Union
+from typing import Callable, Dict, Iterator, TypeVar, Union
 from lodepy.handling.lodepy_error import LodepyInvalidComparison
 from lodepy.groups.group import Group
 from lodepy.nodes.node_return import NodeReturn #pylint: disable=unused-import
@@ -13,7 +13,7 @@ class GroupReturn(Group):
         super().__init__('group_return', set(values.keys()))
         self.values: Dict[str, 'NodeReturn[K]'] = values
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> Iterator[NodeReturn[K]]:
         self.idx = 0
         return self
 
@@ -116,19 +116,19 @@ class GroupReturn(Group):
         return self._handle_arithmetic(lambda x, y: y | x, other)
 
     def _handle_arithmetic(self, op: Callable[[K, K], K], to_act: Union[K,'GroupReturn[K]']) -> 'GroupReturn[K]':
-        res = []
+        res = {}
         if type(to_act) == type(self):
             for node_key in self.values.keys():
-                res.append(NodeReturn(self.values[node_key].node, op(
+                res[node_key] = NodeReturn(self.values[node_key].node, op(
                     self.values[node_key].value,
                     to_act.values[node_key].value
-                )))
+                ))
         else:
             for node_ret in self.values.values():
-                res.append(NodeReturn(node_ret.node, op(
+                res[node_key] = NodeReturn(node_ret.node, op(
                     node_ret.value,
                     to_act
-                )))
+                ))
 
         return GroupReturn(res)
 
