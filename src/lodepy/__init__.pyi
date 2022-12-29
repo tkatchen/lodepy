@@ -1,5 +1,7 @@
 from lodepy.core import (
-    Main as Main
+    Main as Main,
+    init as init,
+    data_store as data_store
 )
 
 from lodepy.data import (
