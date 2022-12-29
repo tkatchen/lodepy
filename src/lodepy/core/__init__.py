@@ -1,2 +1,2 @@
 'core module imports'
-from .lodepy import lodepy, init, data_store
+from .main import Main, init, data_store

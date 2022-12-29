@@ -1,6 +1,6 @@
 from lodepy.data.data_store import DataStore
 
-class lodepy(): # pylint: disable=invalid-name
+class Main():
     '''
     The static accessor to all of lodepy
     '''
@@ -21,7 +21,7 @@ def init(data_dir: str, file_name: str) -> None:
         data_dir (str): The directory to pull the saved data store from.
         file_name (str): The name of the file to pull the data store from.
     '''
-    lodepy.init(data_dir, file_name)
+    Main.init(data_dir, file_name)
 
 def data_store() -> DataStore:
     '''
@@ -30,4 +30,4 @@ def data_store() -> DataStore:
     Returns:
         (DataStore): The static data store for the lodepy instance
     '''
-    return lodepy.data_store
+    return Main.data_store
