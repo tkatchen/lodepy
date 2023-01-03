@@ -24,15 +24,6 @@ class DataStore():
         self.nodes : Dict[str, Node] = {} if nodes is None else nodes
         self.groups : Dict[str, Group]= {} if groups is None else groups
 
-    def __getattribute__(self, __name: str) -> Any:
-        return self.data[__name]
-
-    def __setattr__(self, __name: str, __value: Any) -> None:
-        self.data[__name] = __value
-
-    def __delattr__(self, __name: str) -> None:
-        del self.data[__name]
-
     def __getitem__(self, __name: str) -> Any:
         return self.data[__name]
 

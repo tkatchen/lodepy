@@ -12,15 +12,6 @@ class NodeVariables():
     def __init__(self):
         self.dict: dict[str, Any] = {}
 
-    def __getattribute__(self, __name: str) -> Any:
-        return self.dict[__name]
-
-    def __setattr__(self, __name: str, __value: Any) -> None:
-        self.dict[__name] = __value
-
-    def __delattr__(self, __name: str) -> None:
-        del self.dict[__name]
-
     def __getitem__(self, __name: str) -> Any:
         return self.dict[__name]
 

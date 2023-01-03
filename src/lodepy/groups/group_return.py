@@ -13,7 +13,10 @@ class GroupReturn(Group):
         super().__init__('group_return', set(values.keys()))
         self.values: Dict[str, 'NodeReturn[K]'] = values
 
-    def __iter__(self) -> Iterator[NodeReturn[K]]:
+    '''
+    To-Do: need to find a way to iterate through values. Maybe just delete?
+
+    def __iter__(self) -> 'Iterator[NodeReturn[K]]':
         self.idx = 0
         return self
 
@@ -24,6 +27,7 @@ class GroupReturn(Group):
             return res
         else:
             raise StopIteration
+    '''
 
     def __lt__(self, other) -> 'GroupReturn[K]':
         return self._handle_filters('<', other)
@@ -162,7 +166,7 @@ class GroupReturn(Group):
         res = {}
 
         for node_key in self.values.keys():
-            if comparator(self.values[node_key].value, to_comp.values[node_key].value):
+            if node_key in to_comp.values and comparator(self.values[node_key].value, to_comp.values[node_key].value):
                 res[node_key] = self.values[node_key]
 
         return GroupReturn(res)

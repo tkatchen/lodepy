@@ -9,7 +9,7 @@ class NodeReturn(Node):
     The return of a task executed on a certain node.
     '''
     def __init__(self, node: Node, value: K):
-        super().__init__(node)
+        super().copy(node)
         self.value = value
 
     def __str__(self) -> K:
