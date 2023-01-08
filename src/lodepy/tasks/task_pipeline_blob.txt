@@ -1,0 +1,7 @@
+The pipeline is going to start with some main "base functions". These will serve as the interface for the end-user and will essentially mask adding tasks to the GroupExecutor.
+
+The GroupExecutor will be the manager of tasks. This is where the base functions can do some trickery like running things async/sync or possibly masks multiple tasks in one.
+
+So now the GroupExecutor has decided to "fire" on a task. This will then iteratively (or maybe add some more config for this) execute the task on each node using the NodeExecutor.
+
+The NodeExecutor is going to be a property of each Node, namely Node.executor, and this will manage the persistent connection with it's respective Node. The executor will be in charge of sending the lowest level ssh commands to the Node.
