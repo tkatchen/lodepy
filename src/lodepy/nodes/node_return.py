@@ -9,6 +9,7 @@ class NodeReturn(Node):
     The return of a task executed on a certain node.
     '''
     def __init__(self, node: Node, value: K):
+        #pylint: disable=super-init-not-called
         super().copy(node)
         self.value = value
 

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 from lodepy.handling.log_manager import LogManager
 
@@ -10,7 +10,7 @@ class NodeVariables():
     This data is non-persistant and will be deleted on completion
     '''
     def __init__(self):
-        self.dict: dict[str, Any] = {}
+        self.dict: Dict[str, Any] = {}
 
     def __getitem__(self, __name: str) -> Any:
         return self.dict[__name]
@@ -22,7 +22,9 @@ class NodeVariables():
         del self.dict[__name]
 
     def __missing__(self, __name: str) -> None:
-        LogManager.add_log(f'Tried accessing {__name} from node variables while the key does not exist')
+        LogManager.add_log(
+            f'Tried accessing {__name} from node variables while the key does not exist'
+            )
         return None
 
     def __contains__(self, __name):
@@ -48,3 +50,4 @@ class NodeVariables():
         Set a value
         '''
         self.dict[key] = value
+        
