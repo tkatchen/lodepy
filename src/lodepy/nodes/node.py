@@ -1,6 +1,7 @@
 from typing import List
 
 from lodepy.data.node_variables import NodeVariables
+from lodepy.nodes.node_executor import NodeExecutor
 
 
 class Node():
@@ -11,6 +12,7 @@ class Node():
         self.name = name
         self.ssh = ssh
         self.information = NodeVariables()
+        self.executor = NodeExecutor(ssh)
 
     def copy(self, copy: "Node"):
         '''
@@ -19,6 +21,7 @@ class Node():
         self.name = copy.name
         self.ssh = copy.ssh
         self.information = copy.information
+        self.executor = copy.executor
 
     def __hash__(self) -> int:
         return self.ssh.__hash__() + self.name.__hash__()
