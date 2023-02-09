@@ -11,12 +11,11 @@ class GroupExecutor():
         self.nodes = nodes
 
     def execute_task(self, task: Task):
-        res : Dict['str', 'NodeReturn']= {}
+        res : Dict['str', 'NodeReturn'] = {}
 
         for node in list(self.nodes):
-            # To-Do execute_task should return a Node
             response = node.executor.execute_task(task)
             
-            res[node.name] = NodeReturn(node, response)
+            res[node.name] = response
 
         return GroupReturn(res)
