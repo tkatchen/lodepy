@@ -1,10 +1,11 @@
-from typing import Generic, TypeVar
+from typing import Callable, Generic, TypeVar
 
 T = TypeVar('T')
 
 
 class Comparable(Generic[T]):
-    def __init__(self, **kwargs) -> None:
+    def __init__(self) -> None:
+        self.comp : Callable
         super().__init__()
 
     def __lt__(self, other) -> T:

@@ -1,9 +1,10 @@
-from typing import Generic, TypeVar
+from typing import Callable, Generic, TypeVar
 
 T = TypeVar('T')
 
 class Operable(Generic[T]):
-    def __init__(self, op_fn, **kwargs) -> None:
+    def __init__(self) -> None:
+        self.op_fn : Callable
         super().__init__()
 
     def __and__(self, other) -> T:
