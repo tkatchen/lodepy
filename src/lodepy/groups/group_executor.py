@@ -1,8 +1,7 @@
-from lodepy.groups.group import GroupReturn
+from typing import Dict, Set
+from lodepy.groups.group_return import GroupReturn
 from lodepy.nodes.node import Node
 from lodepy.nodes.node_return import NodeReturn
-from typing import Set, Dict
-
 from lodepy.tasks.task import Task
 
 

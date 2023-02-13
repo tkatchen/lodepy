@@ -1,9 +1,9 @@
 import subprocess
 
-from lodepy.tasks.task import Task
-
 class NodeExecutor():
-    from nodes.node_return import NodeReturn
+    from lodepy.nodes.node_return import NodeReturn
+    from lodepy.tasks.task import Task
+    
     '''
     Class to execute tasks on a node
     '''
