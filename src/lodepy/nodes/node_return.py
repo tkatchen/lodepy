@@ -14,7 +14,7 @@ class NodeReturn(Node):
         self.value = value
 
     def __str__(self) -> K:
-        return self.value
+        return str(self.value)
 
     def __eq__(self, other: 'NodeReturn') -> bool:
         if isinstance(other, (NodeReturn)):

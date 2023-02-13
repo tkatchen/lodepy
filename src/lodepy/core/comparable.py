@@ -12,16 +12,16 @@ class Comparable(Generic[T]):
         return self.comp('<', other)
 
     def __le__(self, other) -> T:
-        return self.comp('>', other)
-
-    def __gt__(self, other) -> T:
-        return self.comp('==', other)
-
-    def __ge__(self, other) -> T:
-        return self.comp('!=', other)
-
-    def __eq__(self, other) -> T:
         return self.comp('<=', other)
 
-    def __ne__(self, other) -> T:
+    def __gt__(self, other) -> T:
+        return self.comp('>', other)
+
+    def __ge__(self, other) -> T:
         return self.comp('>=', other)
+
+    def __eq__(self, other) -> T:
+        return self.comp('==', other)
+
+    def __ne__(self, other) -> T:
+        return self.comp('!=', other)
