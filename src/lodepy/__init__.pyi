@@ -34,3 +34,7 @@ from lodepy.nodes import (
 from lodepy.tasks import (
     Task as Task
 )
+
+from lodepy.git import (
+    Status as Status
+)

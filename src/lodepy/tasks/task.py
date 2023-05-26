@@ -1,17 +1,19 @@
 from abc import abstractmethod
-from typing import TypeVar
+from typing import TYPE_CHECKING, TypeVar
 
-from lodepy.nodes.node_executor import NodeExecutor
-from lodepy.nodes.node_return import NodeReturn
+
+if TYPE_CHECKING:
+  from lodepy.nodes.node import Node
+  from lodepy.nodes.node_return import NodeReturn
 
 K = TypeVar('K')
 
-class Task: # Note, a task should be able to execute a task using node_executor and then use the NodeReturn for comparisons.
+class Task:
     '''
     An abstract class for Tasks that can be run on Nodes
     '''
     @abstractmethod
-    def execute(self, node_executor: NodeExecutor) -> 'NodeReturn[K]':
+    def execute(node: 'Node') -> 'NodeReturn[K]':
         '''
         The method to run when the task gets executed
         '''
