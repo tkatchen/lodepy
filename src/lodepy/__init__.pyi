@@ -1,7 +1,8 @@
 from lodepy.core import (
     Main as Main,
     init as init,
-    data_store as data_store
+    data_store as data_store,
+    import_groups_txt as import_groups_txt
 )
 
 from lodepy.data import (
