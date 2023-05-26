@@ -15,7 +15,7 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
     The group return from executing a certain Task
     '''
     def __init__(self, values: Dict[str, 'NodeReturn[K]']) -> None:
-        super(GroupReturn, self).__init__(name='group_return', nodes=set(values.keys()))
+        super(GroupReturn, self).__init__(name='group_return', nodes=set(values.values()))
         self.comp = self._handle_filters
         self.op_fn = self._handle_arithmetic
         self.values: Dict[str, 'NodeReturn[K]'] = values

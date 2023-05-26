@@ -13,7 +13,7 @@ class GroupExecutor():
         res : Dict['str', 'NodeReturn'] = {}
 
         for node in list(self.nodes):
-            response = node.executor.execute_task(task)
+            response = node.executor.execute_task(task, node)
             
             res[node.name] = response
 

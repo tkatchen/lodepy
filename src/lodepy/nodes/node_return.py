@@ -21,3 +21,6 @@ class NodeReturn(Node):
             return self.value == other.value
         else:
             return self.value == other
+
+    def __hash__(self) -> int:
+        return super().__hash__()
