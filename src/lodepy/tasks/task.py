@@ -1,7 +1,6 @@
 from abc import abstractmethod
 from typing import TYPE_CHECKING, TypeVar
 
-
 if TYPE_CHECKING:
   from lodepy.nodes.node import Node
   from lodepy.nodes.node_return import NodeReturn

@@ -3,8 +3,6 @@ import shlex
 import select
 import os
 
-from lodepy.tasks.task import Task
-
 class NodeExecutor():
     from lodepy.nodes.node_return import NodeReturn
     from lodepy.nodes.node import Node
