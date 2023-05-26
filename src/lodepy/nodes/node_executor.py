@@ -48,6 +48,14 @@ class NodeExecutor():
             if not process.stderr and not process.stdout and process.poll() is None:
                 process.wait()
 
+        if process.stderr:
+            data = os.read(process.stderr.fileno(), read_size)
+            stderr += data
+
+        if process.stdout:
+            data = os.read(process.stdout.fileno(), read_size)
+            stdout += data
+
         return process.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
 
     
