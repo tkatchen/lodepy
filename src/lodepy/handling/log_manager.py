@@ -16,4 +16,7 @@ class LogManager():
         '''
         Get the current logs
         '''
-        return '\n'.join(cls._logs)
+        res = ''
+        for log in cls._logs:
+            res += f'{str(log)}\n'
+        return res

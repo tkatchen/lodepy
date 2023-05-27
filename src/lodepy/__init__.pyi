@@ -23,7 +23,8 @@ from lodepy.handling import (
     LodepyInvalidComparison as LodepyInvalidComparison,
 
     # Logs
-    LogManager as LogManager
+    LogManager as LogManager,
+    LogError as LogError
 )
 
 from lodepy.nodes import (
