@@ -30,3 +30,10 @@ class LodepyInvalidComparison(LodepyError):
     '''
     def __init__(self, comparator: str):
         super().__init__(f'lodepy failed to compare using the comparator {comparator}')
+
+class LodepyInvalidCompareType(LodepyError):
+    '''
+    Can not compare two uncomparable types
+    '''
+    def __init__(self, base: str, to_comp: str):
+        super().__init__(f'lodepy failed to compare type {base} with {to_comp}')

@@ -21,6 +21,7 @@ from lodepy.handling import (
     LodepyDataSaveError as LodepyDataSaveError,
     LodepyError as LodepyError,
     LodepyInvalidComparison as LodepyInvalidComparison,
+    LodepyInvalidCompareType as LodepyInvalidCompareType,
 
     # Logs
     LogManager as LogManager,

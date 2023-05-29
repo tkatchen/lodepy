@@ -1,1 +1,1 @@
-from .status import Status
+from .git_status import GitStatus
