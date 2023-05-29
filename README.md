@@ -2,10 +2,10 @@
 lodepy is a Multi-node fully python automation tool. It is agentless and executes tasks over SSH.
 
 # The concept
-In a nutshell, lodepy serves a pretty simple task: execute ssh commands to servers to set this up.
+In a nutshell, lodepy serves a pretty simple task: execute ssh commands on servers to set them up.
 
 With this comes a variety of somewhat neccessary functionalities that lodepy implements:
-* Execute this commands (obviously) within well defined "Groups" of "Nodes"
+* Execute the commands (obviously) within well defined "Groups" of "Nodes"
 * Create a well defined logging system to stream and monitor task execution
 * Provide a clean wrapper / execution model to seamlessly run operations and comparisons on multiple results.
 
@@ -28,13 +28,13 @@ In it's current state the main interaction is going to be with the [Group](https
       [group_name]
       node_name, ssh_ip
       ```
-   2) Note, already created groups can be found in the `lodepy.data_store.groups`
+   2) Note, already created groups can be found in the `lodepy.data_store().groups`
 
 2) Executing commands
    1) We can then execute a variety of Group commands. A series of these are listed as functions of Group.py.
    2) Some commands can be custom created. In this case you simply need to:
       1) Define the Task
-      2) \<Group\>.execute_task(\<Task\>(params))
+      2) `<Group>.execute_task(<Task>(params))`
 
 3) Using these resulting GroupReturn
    1) Filtering
