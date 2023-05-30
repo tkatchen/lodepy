@@ -22,7 +22,6 @@ setup(
                 'sphinx',
                 'sphinx-paramlinks',
                 'sphinx-autodoc-typehints',
-                '.'
             ]
         }
 )
