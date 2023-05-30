@@ -29,7 +29,11 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+paramlinks_hyperlink_param = 'name'
 
+intersphinx_mapping = {
+    'py': ('https://docs.python.org/3', None),
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
