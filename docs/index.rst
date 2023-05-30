@@ -1,15 +1,9 @@
 Welcome to lodepy's documentation!
 ==================================
 
+lodepy is an agentless server configuration tool.
+
 .. toctree::
-   :maxdepth: 4
-   :caption: Contents:
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   Home <self>
+   usage
+   group
