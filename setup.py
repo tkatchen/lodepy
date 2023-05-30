@@ -18,8 +18,10 @@ setup(
             "Programming Language :: Python :: 3",
         ],
         extras_require = {
-            'sphinx',
-            'sphinx-paramlinks',
-            'sphinx-autodoc-typehints'
+            'docs' : [
+                'sphinx',
+                'sphinx-paramlinks',
+                'sphinx-autodoc-typehints'
+            ]
         }
 )
