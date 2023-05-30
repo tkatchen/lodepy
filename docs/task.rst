@@ -24,5 +24,5 @@ On top of this, any pass/fail messages will be sent to the LogManager, and can b
 Git
 =====
 
-..automodule:: lodepy.git.git_status
+.. automodule:: lodepy.git.git_status
   :members:
