@@ -16,5 +16,10 @@ setup(
         keywords=['python', 'ci', 'cd'],
         classifiers= [
             "Programming Language :: Python :: 3",
-        ]
+        ],
+        extras_require = {
+            'sphinx',
+            'sphinx-paramlinks',
+            'sphinx-autodoc-typehints'
+        }
 )

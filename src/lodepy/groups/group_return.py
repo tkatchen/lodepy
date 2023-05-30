@@ -76,9 +76,16 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
         elif op == '>=': return self.filter(lambda x: x >= to_comp)
         else: raise LodepyInvalidComparison(op)
 
-    def filter_group_return(self, comparator, to_comp: 'GroupReturn[K]'):
+    def filter_group_return(self, comparator: Callable[[K, K],bool], to_comp: 'GroupReturn[K]') -> 'GroupReturn[K]':
         '''
         Filter the group return using a comparator with another group return.
+
+        :param comparator:
+            A function that will compare the two values. The first paramater of this function will be the group return on the left hand side of the comparsion, and the second the right.
+        :param to_comp:
+            The other GroupReturn to compare with
+        :return:
+            A GroupReturn of only the elements of the left Group that pass the comparison
         '''
         res = {}
 
@@ -88,9 +95,14 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
 
         return GroupReturn(res)
 
-    def filter(self, comparator: Callable[[K],bool]):
+    def filter(self, comparator: Callable[[K],bool]) -> 'GroupReturn[K]':
         '''
         Filter the group return using a comparator
+
+        :param comparator:
+            A function that takes in the GroupReturn node's value and runs a comparison.
+        :return:
+            A GroupReturn of only the elements that pass the comparison.
         '''
         res = {}
         for node_ret in self.values.values():
