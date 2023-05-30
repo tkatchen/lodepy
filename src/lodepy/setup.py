@@ -21,7 +21,8 @@ setup(
             'docs' : [
                 'sphinx',
                 'sphinx-paramlinks',
-                'sphinx-autodoc-typehints'
+                'sphinx-autodoc-typehints',
+                '.'
             ]
         }
 )
