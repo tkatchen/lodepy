@@ -6,4 +6,5 @@ lodepy is an agentless server configuration tool.
 .. toctree::
    Home <self>
    usage
+   task
    group
