@@ -4,15 +4,16 @@ from lodepy.handling.lodepy_error import LodepyInvalidCompareType
 
 
 class Version(Comparable):
-    def __init__(self, v: str, suffix: str=None) -> None:
-        '''
-        Parameters:
-        v (str): The version number of the form a.b.c... for any number of ints
-        suffix (str): The suffix of the version (i.e. 1.0.0-a.1, the suffix would be a.1)
-        '''
+    '''
+    Class representation of a Version. Allows for easy comparison of versions (very helpful for package management)
+
+    :version: The version number of the form a.b.c... for any number of ints
+    :suffix: The suffix of the version (i.e. 1.0.0-a.1, the suffix would be a.1)
+    '''
+    def __init__(self, version: str, suffix: str=None) -> None:
         self._version = []
 
-        for num in v.split('.'):
+        for num in version.split('.'):
             self._version.append(int(num))
 
         self.suffix = suffix

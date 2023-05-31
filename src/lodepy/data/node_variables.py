@@ -39,6 +39,8 @@ class NodeVariables():
     def get(self, key: str, default=None):
         '''
         Get a value from the NodeVariables
+
+        :key: The key to get
         '''
         if key in self.dict:
             return self.dict[key]
@@ -48,6 +50,9 @@ class NodeVariables():
     def set(self, key: str, value):
         '''
         Set a value
+
+        :key: The key to set
+        :value: The value to set at that key
         '''
         self.dict[key] = value
         

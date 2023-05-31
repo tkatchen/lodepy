@@ -9,7 +9,10 @@ class GroupExecutor():
     def __init__(self, nodes: Set[Node]) -> None:
         self.nodes = nodes
 
-    def execute_task(self, task: Task):
+    def execute_task(self, task: Task) -> GroupReturn:
+        '''
+        Execute the tasks on the nodes
+        '''
         res : Dict['str', 'NodeReturn'] = {}
 
         for node in list(self.nodes):
