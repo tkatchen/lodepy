@@ -4,6 +4,9 @@ T = TypeVar('T')
 
 
 class Comparable(Generic[T]):
+    '''
+    A class that can be extended, allowing the child to become comparable
+    '''
     def __init__(self) -> None:
         self.comp : Callable
         super().__init__()

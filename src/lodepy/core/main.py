@@ -22,9 +22,8 @@ def init(data_dir: str, file_name: str) -> None:
     '''
     Initialize the lodepy instance
 
-    Parameters:
-        data_dir (str): The directory to pull the saved data store from.
-        file_name (str): The name of the file to pull the data store from.
+    :data_dir: The directory to pull the saved data store from.
+    :file_name: The name of the file to pull the data store from.
     '''
     Main.init(data_dir, file_name)
 
@@ -32,8 +31,7 @@ def data_store() -> DataStore:
     '''
     Access the lodepy data store
 
-    Returns:
-        (DataStore): The static data store for the lodepy instance
+    :return: The static data store for the lodepy instance
     '''
     return Main.data_store
 
@@ -41,11 +39,9 @@ def import_groups_txt(file_name: str) -> Dict[str, Group]:
     '''
     Import a series of groups from a formatted text file
     
-    Parameters:
-        file_name (str): The name of the file to pull data from
+    :file_name: The name of the file to pull data from
         
-    Returns:
-        (Dict[str, Group]): A dictionary from the groups name to the relative group
+    :return: A dictionary from the groups name to the relative group
     '''
 
     res = {}

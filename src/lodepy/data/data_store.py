@@ -15,6 +15,9 @@ class DataStore():
     Meanwhile, the NodeInformation is independent for each host.
 
     Functionally, this is a dictionary with information that can be utilized by any host.
+
+    :data_dir: The directory to store the data
+    :file_name: The name of the file to store in
     '''
     def __init__(self, data_dir: str, file_name='.') -> None:
         self.data_dir = data_dir
@@ -111,6 +114,9 @@ class DataStore():
     def add_node(self, node: Node, group: Union[str, List[str]]):
         '''
         Add a node to (a) group(s)
+
+        :node: The node to add
+        :group: The group(s) to add to that node
         '''
         if isinstance(group, list):
             for cur in group:
@@ -127,6 +133,9 @@ class DataStore():
     def add_group(self, group: str, node: Union[Node, List[Node]]):
         '''
         Add a group with node(s)
+
+        :group: The group to add
+        :node: The node(s) to add to that group
         '''
         if isinstance(node, list):
             self.groups[group] = Group(group, set(node))

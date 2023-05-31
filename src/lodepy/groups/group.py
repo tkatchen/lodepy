@@ -30,5 +30,8 @@ class Group():
     def execute_task(self, task: Task):
         '''
         Execute a task on this group
+
+        :param task:
+            The task to execute. On initialization, you can define the paremters of the Task
         '''
         return self.executor.execute_task(task)
