@@ -9,7 +9,7 @@ class GroupExecutor():
     def __init__(self, nodes: Set[Node]) -> None:
         self.nodes = nodes
 
-    def execute_task(self, task: Task) -> GroupReturn:
+    def execute_task(self, task: Task, ssh=True) -> GroupReturn:
         '''
         Execute the tasks on the nodes
         '''
