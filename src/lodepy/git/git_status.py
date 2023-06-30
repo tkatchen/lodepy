@@ -8,8 +8,13 @@ from lodepy.handling.log_manager import LogManager
 K = TypeVar('K')
 
 class GitStatus(Task):
-    def execute(node: 'Node', ssh=True) -> 'NodeReturn[K]':
-        res = node.executor.send_command('git status', ssh=ssh)
+    def __init__(self, **kwargs):
+        self.ssh = True
+        if 'ssh' in kwargs:
+            self.ssh = kwargs['ssh']
+
+    def execute(self, node: 'Node') -> 'NodeReturn[K]':
+        res = node.executor.send_command('git status', ssh=self.ssh)
 
         if res[2] != '':
             LogManager.add_log(LogError('git status', res[2], node))
