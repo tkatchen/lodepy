@@ -13,7 +13,7 @@ class GitStatus(Task):
         if 'ssh' in kwargs:
             self.ssh = kwargs['ssh']
 
-    def execute(self, node: 'Node') -> 'NodeReturn[K]':
+    def execute(self, node: 'Node') -> 'NodeReturn[str]':
         res = node.executor.send_command('git status', ssh=self.ssh)
 
         if res[2] != '':

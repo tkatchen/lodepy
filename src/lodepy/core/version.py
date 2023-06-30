@@ -18,6 +18,9 @@ class Version(Comparable):
 
         self.suffix = suffix
 
+    def __str__(self) -> str:
+        return '.'.join([str(x) for x in self._version])
+
     def comp(self, op, to_comp: Union[str,'Version']):
         buff = None
         if type(to_comp) == type(''):
