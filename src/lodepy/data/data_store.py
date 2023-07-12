@@ -6,6 +6,7 @@ from lodepy.handling.lodepy_error import LodepyDataSaveError
 from lodepy.handling.log_manager import LogManager
 from lodepy.nodes.node import Node
 
+
 class DataStore():
     '''
     The location of the cached data for the entire lodepy instances.
@@ -19,13 +20,14 @@ class DataStore():
     :data_dir: The directory to store the data
     :file_name: The name of the file to store in
     '''
+
     def __init__(self, data_dir: str, file_name='.') -> None:
         self.data_dir = data_dir
         self.file_name = file_name
         data, nodes, groups = self._load_data()
-        self.data : Dict[str, any] = {} if data is None else data
-        self.nodes : Dict[str, Node] = {} if nodes is None else nodes
-        self.groups : Dict[str, Group]= {} if groups is None else groups
+        self.data: Dict[str, any] = {} if data is None else data
+        self.nodes: Dict[str, Node] = {} if nodes is None else nodes
+        self.groups: Dict[str, Group] = {} if groups is None else groups
 
     def __getitem__(self, __name: str) -> Any:
         return self.data[__name]
@@ -37,7 +39,8 @@ class DataStore():
         del self.data[__name]
 
     def __missing__(self, __name: str) -> None:
-        LogManager.add_log(f'Tried accessing {__name} from data store while the key does not exist')
+        LogManager.add_log(
+            f'Tried accessing {__name} from data store while the key does not exist')
         return None
 
     def __contains__(self, __name):
@@ -67,8 +70,8 @@ class DataStore():
             return ({}, {}, {})
 
     def _deserialize(
-            self, serialized_data: Dict[str, any]
-        ) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
+        self, serialized_data: Dict[str, any]
+    ) -> Tuple[Dict[str, any], Dict[str, Node], Dict[str, Group]]:
         '''
         Deserializes the data from the JSON file
         '''
@@ -93,11 +96,12 @@ class DataStore():
         nodes = [(node.name, node.ssh) for node in self.nodes.values()]
         groups = {}
         for group in self.groups.values():
-            groups[group.name] = [(node.name, node.ssh) for node in list(group.nodes)]
+            groups[group.name] = [(node.name, node.ssh)
+                                  for node in list(group.nodes)]
         return {
-            'data' : self.data,
-            'nodes' : nodes,
-            'groups' : groups
+            'data': self.data,
+            'nodes': nodes,
+            'groups': groups
         }
 
     def write_data(self):
@@ -109,7 +113,8 @@ class DataStore():
             with open(f'{self.data_dir}/{self.file_name}', 'w', encoding='utf-8') as file:
                 json.dump(json_string, file)
         except OSError as exc:
-            raise LodepyDataSaveError(f'{self.data_dir}/{self.file_name}') from exc
+            raise LodepyDataSaveError(
+                f'{self.data_dir}/{self.file_name}') from exc
 
     def add_node(self, node: Node, group: Union[str, List[str]]):
         '''

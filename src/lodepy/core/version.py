@@ -10,7 +10,8 @@ class Version(Comparable):
     :version: The version number of the form a.b.c... for any number of ints
     :suffix: The suffix of the version (i.e. 1.0.0-a.1, the suffix would be a.1)
     '''
-    def __init__(self, version: str, suffix: str=None) -> None:
+
+    def __init__(self, version: str, suffix: str = None) -> None:
         self._version = []
 
         for num in version.split('.'):
@@ -21,7 +22,7 @@ class Version(Comparable):
     def __str__(self) -> str:
         return '.'.join([str(x) for x in self._version])
 
-    def comp(self, op, to_comp: Union[str,'Version']):
+    def comp(self, op, to_comp: Union[str, 'Version']):
         buff = None
         if type(to_comp) == type(''):
             buff = to_comp.split('.')
@@ -29,8 +30,8 @@ class Version(Comparable):
             buff = to_comp._version
         else:
             raise LodepyInvalidCompareType(type(self), type(to_comp))
-            
-        # Honestly, trying to do lt and gt are a pain in the ass. Levels easier to just not with the opposite.    
+
+        # Honestly, trying to do lt and gt are a pain in the ass. Levels easier to just not with the opposite.
         if op == '>':
             return not self.comp('<=', to_comp)
         if op == '<':
@@ -60,4 +61,3 @@ class Version(Comparable):
                     return False
 
         return True
-            
