@@ -39,6 +39,18 @@ def data_store() -> DataStore:
     return Main.data_store
 
 
+def get_groups() -> Dict[str, Group]:
+    '''
+    Get the Groups from disk.
+
+    The file is stored in /etc/lodepy/nodes.txt
+    Should be the same format as the input for import_groups_txt
+
+    :return: A dictionary from the groups name to the relative group
+    '''
+    return import_groups_txt('/etc/lodepy/nodes.txt')
+
+
 def import_groups_txt(file_name: str) -> Dict[str, Group]:
     '''
     Import a series of groups from a formatted text file
