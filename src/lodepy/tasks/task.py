@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from typing import TYPE_CHECKING, TypeVar
+from typing import TYPE_CHECKING, Generic, TypeVar
 
 if TYPE_CHECKING:
     from lodepy.nodes.node import Node
@@ -8,10 +8,16 @@ if TYPE_CHECKING:
 K = TypeVar('K')
 
 
-class Task:
+class Task(Generic[K]):
     '''
-    An abstract class for Tasks that can be run on Nodes
+    The class for Tasks that can be run on Nodes
     '''
+
+    def __init__(self, **kwargs) -> None:
+        self.ssh = True
+        if 'ssh' in kwargs:
+            self.ssh = kwargs['ssh']
+
     @abstractmethod
     def execute(node: 'Node', **kwargs) -> 'NodeReturn[K]':
         '''

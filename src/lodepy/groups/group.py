@@ -1,9 +1,12 @@
-from typing import Set
+from typing import Set, TypeVar
 from lodepy.nodes.node import Node
 from lodepy.tasks.task import Task
 
+K = TypeVar('K')
+
 
 class Group():
+    from lodepy.groups.group_return import GroupReturn
     '''
     A group, which is a collection of nodes
 
@@ -12,6 +15,7 @@ class Group():
     :param nodes:
         The set of nodes for the group
     '''
+
     def __init__(self, name: str, nodes: Set[Node], **kwargs):
         from lodepy.groups.group_executor import GroupExecutor
         self.name: str = name
@@ -27,7 +31,7 @@ class Group():
         '''
         self.nodes.add(node)
 
-    def execute_task(self, task: Task, ssh=True):
+    def execute_task(self, task: Task, ssh=True) -> 'GroupReturn[K]':
         '''
         Execute a task on this group
 

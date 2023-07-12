@@ -2,12 +2,14 @@ from typing import Callable, Generic, TypeVar
 
 T = TypeVar('T')
 
+
 class Operable(Generic[T]):
     '''
     A class that can be extended, allowing the child to become operable
     '''
+
     def __init__(self) -> None:
-        self.op_fn : Callable
+        self.op_fn: Callable
         super().__init__()
 
     def __and__(self, other) -> T:

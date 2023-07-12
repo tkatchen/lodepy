@@ -5,7 +5,7 @@ class LogManager():
     _logs = []
 
     @classmethod
-    def add_log(cls, message:str):
+    def add_log(cls, message: str):
         '''
         Add a log to the lodepy log manager
         '''

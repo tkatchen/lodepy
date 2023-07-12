@@ -9,6 +9,7 @@ class NodeVariables():
 
     This data is non-persistant and will be deleted on completion
     '''
+
     def __init__(self):
         self.dict: Dict[str, Any] = {}
 
@@ -24,7 +25,7 @@ class NodeVariables():
     def __missing__(self, __name: str) -> None:
         LogManager.add_log(
             f'Tried accessing {__name} from node variables while the key does not exist'
-            )
+        )
         return None
 
     def __contains__(self, __name):
@@ -55,4 +56,3 @@ class NodeVariables():
         :value: The value to set at that key
         '''
         self.dict[key] = value
-        

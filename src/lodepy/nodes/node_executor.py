@@ -2,19 +2,24 @@ import subprocess
 import shlex
 import select
 import os
+from typing import TypeVar
+
+K = TypeVar('K')
+
 
 class NodeExecutor():
     from lodepy.nodes.node_return import NodeReturn
     from lodepy.nodes.node import Node
     from lodepy.tasks.task import Task
-    
+
     '''
     Class to execute tasks on a node
     '''
+
     def __init__(self, ssh: str) -> None:
         self.ssh = ssh
 
-    def execute_task(self, task: Task, node: Node) -> 'NodeReturn':
+    def execute_task(self, task: Task, node: Node) -> 'NodeReturn[K]':
         '''
         execute a Task. Need to format the task before I can really think of how to use it
         '''
@@ -26,17 +31,19 @@ class NodeExecutor():
         '''
 
         if ssh:
-          cmd = f'ssh {self.ssh} {cmd}'
+            cmd = f'ssh {self.ssh} {cmd}'
 
         passed_cmd = shlex.split(cmd)
 
-        process = subprocess.Popen(passed_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(
+            passed_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         stdout = b''
         stderr = b''
 
         while process.poll() is None:
-            ready, wait, exceptions = select.select([process.stdout, process.stderr], [], [process.stdout, process.stderr], 1)
+            ready, wait, exceptions = select.select([process.stdout, process.stderr], [], [
+                                                    process.stdout, process.stderr], 1)
 
             if process.stdout in ready:
                 data = os.read(process.stdout.fileno(), read_size)
@@ -57,5 +64,3 @@ class NodeExecutor():
             stdout += data
 
         return process.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
-
-    

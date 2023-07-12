@@ -5,6 +5,7 @@ from typing import Dict
 
 from lodepy.nodes.node import Node
 
+
 class Main():
     '''
     The static accessor to all of lodepy
@@ -12,11 +13,12 @@ class Main():
     data_store: DataStore = None
 
     @classmethod
-    def init(cls, data_dir: str, file_name:str):
+    def init(cls, data_dir: str, file_name: str):
         '''
         Initialize the static lodepy instance
         '''
         cls.data_store = DataStore(data_dir, file_name)
+
 
 def init(data_dir: str, file_name: str) -> None:
     '''
@@ -27,6 +29,7 @@ def init(data_dir: str, file_name: str) -> None:
     '''
     Main.init(data_dir, file_name)
 
+
 def data_store() -> DataStore:
     '''
     Access the lodepy data store
@@ -35,18 +38,19 @@ def data_store() -> DataStore:
     '''
     return Main.data_store
 
+
 def import_groups_txt(file_name: str) -> Dict[str, Group]:
     '''
     Import a series of groups from a formatted text file
-    
+
     :file_name: The name of the file to pull data from
-        
+
     :return: A dictionary from the groups name to the relative group
     '''
 
     res = {}
 
-    cur_group : Group = None
+    cur_group: Group = None
 
     with open(file_name) as file:
         lines = [x[:-1] for x in file.readlines()]

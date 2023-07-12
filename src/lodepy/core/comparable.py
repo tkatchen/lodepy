@@ -7,8 +7,9 @@ class Comparable(Generic[T]):
     '''
     A class that can be extended, allowing the child to become comparable
     '''
+
     def __init__(self) -> None:
-        self.comp : Callable
+        self.comp: Callable
         super().__init__()
 
     def __lt__(self, other) -> T:

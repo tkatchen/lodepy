@@ -7,9 +7,10 @@ class Node():
     '''
     The instance of the node that is used for task execution
     '''
+
     def __init__(self, name: str, ssh: str) -> None:
         from lodepy.nodes.node_executor import NodeExecutor
-        
+
         self.name = name
         self.ssh = ssh
         self.information = NodeVariables()

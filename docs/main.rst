@@ -29,3 +29,4 @@ Version
 
 .. automodule:: lodepy.core.version
     :members:
+    :inherited-members:

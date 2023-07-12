@@ -10,12 +10,15 @@ from lodepy.tasks.task import Task
 
 K = TypeVar('K')
 
+
 class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'], Generic[K]):
     '''
     The group return from executing a certain Task
     '''
+
     def __init__(self, values: Dict[str, 'NodeReturn[K]']) -> None:
-        super(GroupReturn, self).__init__(name='group_return', nodes=set(values.values()))
+        super(GroupReturn, self).__init__(
+            name='group_return', nodes=set(values.values()))
         self.comp = self._handle_filters
         self.op_fn = self._handle_arithmetic
         self.values: Dict[str, 'NodeReturn[K]'] = values
@@ -36,7 +39,7 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
             raise StopIteration
     '''
 
-    def _handle_arithmetic(self, op: Callable[[K, K], K], to_act: Union[K,'GroupReturn[K]']) -> 'GroupReturn[K]':
+    def _handle_arithmetic(self, op: Callable[[K, K], K], to_act: Union[K, 'GroupReturn[K]']) -> 'GroupReturn[K]':
         res = {}
         if type(to_act) == type(self):
             for node_key in self.values.keys():
@@ -53,30 +56,42 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
 
         return GroupReturn(res)
 
-
-    def _handle_filters(self, op: str, to_comp: Union[K,'GroupReturn[K]']) -> 'GroupReturn[K]': 
+    def _handle_filters(self, op: str, to_comp: Union[K, 'GroupReturn[K]']) -> 'GroupReturn[K]':
         '''
         Handler function for the filters from comparisons.
         '''
         if type(to_comp) == type(self):
-            if op == '<': return self.filter_group_return(lambda x, to_comp: x < to_comp, to_comp)
-            elif op == '>': return self.filter_group_return(lambda x, to_comp: x > to_comp, to_comp)
-            elif op == '==': return self.filter_group_return(lambda x, to_comp: x == to_comp, to_comp)
-            elif op == '!=': return self.filter_group_return(lambda x, to_comp: x != to_comp, to_comp)
-            elif op == '<=': return self.filter_group_return(lambda x, to_comp: x <= to_comp, to_comp)
-            elif op == '>=': return self.filter_group_return(lambda x, to_comp: x >= to_comp, to_comp)
-            else: raise LodepyInvalidComparison(op)
-                
+            if op == '<':
+                return self.filter_group_return(lambda x, to_comp: x < to_comp, to_comp)
+            elif op == '>':
+                return self.filter_group_return(lambda x, to_comp: x > to_comp, to_comp)
+            elif op == '==':
+                return self.filter_group_return(lambda x, to_comp: x == to_comp, to_comp)
+            elif op == '!=':
+                return self.filter_group_return(lambda x, to_comp: x != to_comp, to_comp)
+            elif op == '<=':
+                return self.filter_group_return(lambda x, to_comp: x <= to_comp, to_comp)
+            elif op == '>=':
+                return self.filter_group_return(lambda x, to_comp: x >= to_comp, to_comp)
+            else:
+                raise LodepyInvalidComparison(op)
 
-        if op == '<': return self.filter(lambda x: x < to_comp)
-        elif op == '>': return self.filter(lambda x: x > to_comp)
-        elif op == '==': return self.filter(lambda x: x == to_comp)
-        elif op == '!=': return self.filter(lambda x: x != to_comp)
-        elif op == '<=': return self.filter(lambda x: x <= to_comp)
-        elif op == '>=': return self.filter(lambda x: x >= to_comp)
-        else: raise LodepyInvalidComparison(op)
+        if op == '<':
+            return self.filter(lambda x: x < to_comp)
+        elif op == '>':
+            return self.filter(lambda x: x > to_comp)
+        elif op == '==':
+            return self.filter(lambda x: x == to_comp)
+        elif op == '!=':
+            return self.filter(lambda x: x != to_comp)
+        elif op == '<=':
+            return self.filter(lambda x: x <= to_comp)
+        elif op == '>=':
+            return self.filter(lambda x: x >= to_comp)
+        else:
+            raise LodepyInvalidComparison(op)
 
-    def filter_group_return(self, comparator: Callable[[K, K],bool], to_comp: 'GroupReturn[K]') -> 'GroupReturn[K]':
+    def filter_group_return(self, comparator: Callable[[K, K], bool], to_comp: 'GroupReturn[K]') -> 'GroupReturn[K]':
         '''
         Filter the group return using a comparator with another group return.
 
@@ -95,7 +110,7 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
 
         return GroupReturn(res)
 
-    def filter(self, comparator: Callable[[K],bool]) -> 'GroupReturn[K]':
+    def filter(self, comparator: Callable[[K], bool]) -> 'GroupReturn[K]':
         '''
         Filter the group return using a comparator
 
