@@ -125,3 +125,16 @@ class GroupReturn(Group, Comparable['GroupReturn[K]'], Operable['GroupReturn[K]'
                 res[node_ret.name] = node_ret
 
         return GroupReturn(res)
+    
+    def update_node_variables(self, key: str) -> None:
+        '''
+        Update the Node's NodeVariables with it's corresponding return value.
+
+        :param key:
+            The key to set for this node variable
+        '''
+
+        for node_ret in self.values.values():
+            node_ret.information.set(
+                key, node_ret.value
+            )

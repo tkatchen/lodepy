@@ -14,7 +14,7 @@ class Task(Generic[K]):
     '''
 
     def __init__(self, **kwargs) -> None:
-        self.ssh = True
+        self.ssh : bool = True
         if 'ssh' in kwargs:
             self.ssh = kwargs['ssh']
 

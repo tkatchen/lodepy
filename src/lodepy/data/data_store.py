@@ -17,12 +17,10 @@ class DataStore():
 
     Functionally, this is a dictionary with information that can be utilized by any host.
 
-    :data_dir: The directory to store the data
     :file_name: The name of the file to store in
     '''
 
-    def __init__(self, data_dir: str, file_name='.') -> None:
-        self.data_dir = data_dir
+    def __init__(self, file_name='/etc/lodepy/datastore.txt') -> None:
         self.file_name = file_name
         data, nodes, groups = self._load_data()
         self.data: Dict[str, any] = {} if data is None else data
